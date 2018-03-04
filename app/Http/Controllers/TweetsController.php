@@ -32,13 +32,4 @@ class TweetsController extends Controller {
             $this->tweetAnalyzer->analyzeTweet(end($array))
         );
     }
-
-    // protected function buildFailedValidationResponse(Request $request, array $errors)
-    // {
-    //     if ($request->expectsJson()) {
-    //         return new JsonResponse($errors, 422);
-    //     }
-
-    //     return parent::buildFailedValidationResponse($request, $errors);
-    // }
 }
