@@ -27,7 +27,7 @@ class TweetAnalyzer {
         });
     }
 
-    function getTweetData($id) {
+    protected function getTweetData($id) {
         $getTweetUrl = "https://api.twitter.com/1.1/statuses/show/$id.json";
         $rawResult = $this->twitterApi->buildOauth($getTweetUrl, 'GET')
             ->performRequest();
@@ -41,7 +41,7 @@ class TweetAnalyzer {
         }
     }
 
-    function getRetweetData($id) {
+    protected function getRetweetData($id) {
         $getTweetStatusUrl = "https://api.twitter.com/1.1/statuses/retweets/$id.json";
         $rawResult = $this->twitterApi->buildOauth($getTweetStatusUrl, 'GET')
             ->performRequest();
@@ -55,7 +55,7 @@ class TweetAnalyzer {
         }
     }
 
-    function createTweet($tweetData, $retweets) {
+    protected function createTweet($tweetData, $retweets) {
         $tweet = new Tweet();
 
         $tweet->updatedTime = date("D M d, Y G:i");
@@ -71,7 +71,7 @@ class TweetAnalyzer {
         return $tweet;
     }
 
-    function calculateReach(array $retweets) {
+    protected function calculateReach(array $retweets) {
         return array_reduce($retweets, function ($carry, $item) {
             try {
                 $carry += $item->user->followers_count;
